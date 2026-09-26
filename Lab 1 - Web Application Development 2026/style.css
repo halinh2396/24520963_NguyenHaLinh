@@ -1,34 +1,57 @@
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+/* 1. Reset các cài đặt mặc định của trình duyệt */
+*, *::before, *::after { 
+  box-sizing: border-box; 
+  margin: 0; 
+  padding: 0; 
+} 
+
+/* 2. Cấu hình chế độ sáng/tối của hệ thống */
+html { 
+  color-scheme: light dark; 
+} 
+
+/* 3. Khai báo các biến màu sắc (Theme sáng) */
+:root { 
+  --bg-primary: #ffffff; 
+  --text-primary: #1f2937; 
+  --accent: #2563eb; 
+  --card-bg: #f8fafc; 
+  --border-color: #d1d5db; 
+} 
+
+/* 4. Tự động chuyển đổi màu khi hệ thống bật chế độ Dark Mode */
+@media (prefers-color-scheme: dark) { 
+  :root { 
+    --bg-primary: #111827; 
+    --text-primary: #f9fafb; 
+    --accent: #60a5fa; 
+    --card-bg: #1f2937; 
+    --border-color: #4b5563; 
+  } 
+} 
+
+/* 5. Cài đặt font chữ và nền cho toàn bộ trang web */
+body { 
+  font-family: system-ui, -apple-system, sans-serif; 
+  line-height: 1.6; 
+  background-color: var(--bg-primary); 
+  color: var(--text-primary); 
 }
 
-html {
-  color-scheme: light dark;
-}
+/* 6. Các class dùng riêng cho Layout và Component */
+.project-grid { 
+  display: grid; 
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+  gap: 1.5rem; 
+  width: 100%; 
+  max-width: 100%; 
+} 
 
-:root {
-  --bg-primary: #ffffff;
-  --text-primary: #1f2937;
-  --accent: #2563eb;
-  --card-bg: #f8fafc;
-  --border-color: #d1d5db;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg-primary: #111827;
-    --text-primary: #f9fafb;
-    --accent: #60a5fa;
-    --card-bg: #1f2937;
-    --border-color: #4b5563;
-  }
-}
-
-body {
-  font-family: system-ui, -apple-system, sans-serif;
-  line-height: 1.6;
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
+.project-card { 
+  width: 100%; 
+  min-width: 0; 
+  padding: 1.5rem; 
+  background-color: var(--card-bg); 
+  border: 1px solid var(--border-color); 
+  border-radius: 0.75rem; 
 }
