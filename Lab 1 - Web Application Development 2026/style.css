@@ -10,8 +10,9 @@ html {
   color-scheme: light dark; 
 } 
 
-/* 3. Khai báo các biến màu sắc (Theme sáng) */
-:root { 
+/* 3. Khai báo các biến màu sắc (Mặc định: Hệ thống Sáng hoặc data-theme="light") */
+:root,
+html[data-theme="light"] { 
   --bg-primary: #ffffff; 
   --text-primary: #1f2937; 
   --accent: #2563eb; 
@@ -19,7 +20,7 @@ html {
   --border-color: #d1d5db; 
 } 
 
-/* 4. Tự động chuyển đổi màu khi hệ thống bật chế độ Dark Mode */
+/* 4. Tự động chuyển màu theo Hệ thống Tối HOẶC khi ép buộc bằng data-theme="dark" */
 @media (prefers-color-scheme: dark) { 
   :root { 
     --bg-primary: #111827; 
@@ -28,6 +29,15 @@ html {
     --card-bg: #1f2937; 
     --border-color: #4b5563; 
   } 
+}
+
+/* Bộ chọn này đảm bảo khi JS đổi sang "dark", giao diện sẽ tối bất kể hệ thống đang ở chế độ nào */
+html[data-theme="dark"] { 
+  --bg-primary: #111827; 
+  --text-primary: #f9fafb; 
+  --accent: #60a5fa; 
+  --card-bg: #1f2937; 
+  --border-color: #4b5563; 
 } 
 
 /* 5. Cài đặt font chữ và nền cho toàn bộ trang web */
@@ -36,6 +46,8 @@ body {
   line-height: 1.6; 
   background-color: var(--bg-primary); 
   color: var(--text-primary); 
+  /* Thêm transition giúp hiệu ứng chuyển đổi mượt mà hơn */
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
 /* 6. Các class dùng riêng cho Layout và Component */
@@ -54,4 +66,5 @@ body {
   background-color: var(--card-bg); 
   border: 1px solid var(--border-color); 
   border-radius: 0.75rem; 
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
